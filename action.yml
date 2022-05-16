@@ -6,6 +6,9 @@ inputs:
     description: Image tag of the docker image
     required: true
     default: 'latest'
+  git_user:
+    description: username to access github repo
+    required: true
   git_password:
     description: Personal Access Token for k8s deployment files repo
     required: true
