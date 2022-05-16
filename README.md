@@ -48,7 +48,7 @@ Action has to be invoked with below parameters
         uses: sivakumarvunnam/argocd-helm-update-yaml@main # Uses an action in the root directory
         id: deployment-update
         with:
-          git_user: avettabot
+          git_user: username
           git_password: ${{ secrets.GH_TOKEN }} 
           image_tag: ${{needs.build-and-push-docker-image.outputs.new_tag}}
           app_name: ${{needs.build-and-push-docker-image.outputs.app_name}}
