@@ -1,4 +1,5 @@
 FROM amazonlinux:latest
+LABEL Maintainer="Sivakumar Vunnam"
 ARG PYTHON_VERSION=3.9.8
 ARG BOTO3_VERSION=1.6.3
 ARG BOTOCORE_VERSION=1.9.3
