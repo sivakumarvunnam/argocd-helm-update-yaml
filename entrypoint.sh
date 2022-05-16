@@ -10,7 +10,7 @@ env=$5
 git_repo=$6
 git_branch=$7
 
-DIR="$( cd "$( dirname "$0" )" && pwd )" && la -later
+DIR="$( cd "$( dirname "$0" )" && pwd )" && ls -latr
 VALUES_FILE=$DIR/avetta/configs/${env}/${app_name}/values.yaml
 old_tag=$(cat $VALUES_FILE | grep tag: | awk '{print $2}')
 
