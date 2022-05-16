@@ -2,7 +2,7 @@
 name: 'Custom Github Action to Update Deployment YAML files'
 description: 'Update helm values files with new image'
 inputs:
-  image_id:
+  image_tag:
     description: Image tag of the docker image
     required: true
     default: 'latest'
@@ -28,8 +28,9 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.image_id }}
+    - ${{ inputs.git_user }}
     - ${{ inputs.git_password }}
+    - ${{ inputs.image_tag }}
     - ${{ inputs.app_name }}
     - ${{ inputs.environment }}
     - ${{ inputs.git_repo }}
