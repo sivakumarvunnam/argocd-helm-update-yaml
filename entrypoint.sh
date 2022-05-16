@@ -28,7 +28,7 @@ fi
 #yq -i eval ".image.tag = \"$image_tag\"" $VALUES_FILE
 git remote set-url origin https://github.com/avetta/argocd-helm.git
 git config user.email "$git_user"
-git config user.name "$git_user@avetta.com"
+git config user.name "$git_user"
 git add .
 git commit -m "Image tag in ${app_name}/values.yaml for ${app_name} with $image_tag"
 git push -u origin originize_repo
