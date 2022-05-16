@@ -12,6 +12,7 @@ git_branch=$7
 
 mkdir -p /tmp/eks-deployment
 git clone -b ${git_branch} https://$git_user:$git_password@github.com/$git_repo.git /tmp/eks-deployment
+DIR="$( cd "$( dirname "$0" )" && pwd )" && la -later
 cd /tmp/eks-deployment/avetta/configs/${env}
 yq -i eval ".image.tag = \"$image_tag\"" ${app_name}/values.yaml
 git config user.email "$git_user"
