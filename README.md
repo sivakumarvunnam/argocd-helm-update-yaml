@@ -4,29 +4,55 @@ argocd-helm-update-yaml is a github action used to update image tag in helm valu
 
 Action has to be invoked with below parameters
 
-- git_user
-- git_password
-- image_tag
-- app_name
-- env
-- git_repo
-- git_branch
+## Inputs
 
-Example
-      - name: github action
-        uses: actions/checkout@v2
+### `git_user`
+
+**Required** username to access github repo
+
+### `git_password`
+
+**Required** Personal Access Token for k8s deployment files repo
+
+### `image_tag`
+
+**Required** Image tag of the docker image
+
+### `app_name`
+
+**Required** App name to be updated
+
+### `env`
+
+**Required** Environment to be update
+
+
+### `git_repo`
+
+**Required** Repo Name where Helm Chart files exits
+
+
+### `git_branch`
+
+**Required** Branch Name
+
+```         
+      - name: ArgoCD Repo Checkout
+        uses: actions/checkout@v3
         with:
-          repository: sivakumarvunnam/argocd-helm-update-yaml
-          path: .github/actions/argocd-helm-update-yaml
-          
+          repository: reponame
+          token: ${{ secrets.GH_TOKEN }}
+          ref: originize_repo
+
       - name: Update image tag in helm chart
-        uses: ./.github/actions/argocd-helm-update-yaml # Uses an action in the root directory
+        uses: sivakumarvunnam/argocd-helm-update-yaml@main # Uses an action in the root directory
         id: deployment-update
         with:
-          git_user: username
-          git_password: password 
-          image_tag: tag
-          app_name: appName
-          environment: dev
-          git_repo: sivakumarvunnam/reponame
-          git_branch: main
+          git_user: avettabot
+          git_password: ${{ secrets.GH_TOKEN }} 
+          image_tag: ${{needs.build-and-push-docker-image.outputs.new_tag}}
+          app_name: ${{needs.build-and-push-docker-image.outputs.app_name}}
+          environment: dot
+          git_repo: reponame
+          git_branch: originize_repo
+```
