@@ -18,7 +18,7 @@ if [[ -z $old_tag ]]; then
 echo "==> tag is null! trying to update tag..."
 sed -i "s/tag:/tag: $image_tag/" $VALUES_FILE
 elif [[ $old_tag != $image_tag ]]; then
-echo "==> updating tag to `${image_tag}`"
+echo "==> updating tag to $(image_tag)"
 sed -i "s/$old_tag/$image_tag/" $VALUES_FILE
 else
 echo "==> Nothing to update"
@@ -26,7 +26,7 @@ exit 0
 fi
 
 #yq -i eval ".image.tag = \"$image_tag\"" $VALUES_FILE
-git remote set-url origin https://github.com/avetta/argocd-helm.git
+git remote set-url origin https://github.com/${git_repo}.git
 git config user.email "$git_user"
 git config user.name "$git_user"
 git add .
