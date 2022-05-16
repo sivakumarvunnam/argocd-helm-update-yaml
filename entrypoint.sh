@@ -11,9 +11,8 @@ git_repo=$6
 git_branch=$7
 
 DIR="$( cd "$( dirname "$0" )" && pwd )" && ls -latr
-tree
-VALUES_FILE=$DIR/avetta/configs/${env}/${app_name}/values.yaml
-old_tag=$(cat $VALUES_FILE | grep tag: | awk '{print $2}')
+VALUES_FILE=avetta/configs/${env}/${app_name}/values.yaml
+old_tag=$(cat avetta/configs/${env}/${app_name}/values.yaml | grep tag: | awk '{print $2}')
 
 if [[ -z $old_tag ]]; then
 echo 'tag is null! trying to update tag'
