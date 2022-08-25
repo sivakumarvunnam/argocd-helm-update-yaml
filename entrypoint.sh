@@ -13,7 +13,7 @@ git_branch=$7
 DIR="$( cd "$( dirname "$0" )" && pwd )" && ls -latr
 VALUES_FILE=avetta/configs/${env}/${app_name}/values.yaml
 old_tag=$(cat avetta/configs/${env}/${app_name}/values.yaml | grep tag: | awk '{print $2}')
-
+echo "==> Old image tag is ${old_tag}"
 if [[ -z $old_tag ]]; then
 echo "==> tag is null! trying to update tag..."
 sed -i "s/tag:/tag: $image_tag/" $VALUES_FILE
@@ -32,7 +32,7 @@ git config user.name "$git_user"
 git add .
 git commit -m "Image tag in ${app_name}/values.yaml for ${app_name} with $image_tag"
 git push -u origin originize_repo
-echo "==> Updated image tag in ${app_name}/values.yaml for ${app_name}"
+echo "==> Updated image tag in ${env}/${app_name}/values.yaml for ${app_name}"
 
 
 status="Updated image tag in ${app_name}/values.yaml for ${app_name}"
